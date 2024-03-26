@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+  <title>Spoonacular API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+
+<body class=" w3-light-grey">
+  <div class="w3-container w3-white">
+    <h2 class="w3-text-green"><b>Spoonacular API</b></h2>
+  </div>
+  
+  <div class="w3-bar w3-green">
+    <button class="tab-link w3-bar-item w3-button w3-text-white w3-light-green" onclick="openTab('tab1', this)">Analyze Recipe</button>
+    <button class="tab-link w3-bar-item w3-button w3-text-white" onclick="openTab('tab2', this)">Get Recipe Information</button>
+  </div>
+  
+  <div id="tab1-desc" class="tab-desc w3-margin">
+    <h4 class="w3-text-green"><a href="https://spoonacular.com/food-api/docs#Analyze-Recipe"><b>Analyze Recipe</b></a></h4>
+    This endpoint allows you to send raw recipe information, such as title, servings, and ingredients, to then see what we compute (badges, diets, nutrition, and more). This is useful if you have your own recipe data and want to enrich it with our semantic analysis.
+    <div class="w3-code cssHigh notranslate w3-dark-grey">
+      POST https://api.spoonacular.com/recipes/analyze<br>
+    </div>
+  </div>
+  
+  <div id="tab2-desc" class="tab-desc w3-margin" style="display: none;">
+    <h4 class="w3-text-green"><a href="https://spoonacular.com/food-api/docs#Get-Recipe-Information"><b>Get Recipe Information</b></a></h4>
+    Use a recipe id to get full information about a recipe, such as ingredients, nutrition, diet and allergen information, etc.
+    <div class="w3-code cssHigh notranslate w3-dark-grey">
+      GET https://api.spoonacular.com/recipes/{id}/information<br>
+    </div>
+  </div>
+
+  <div class="w3-row">
+    <div id="tab1" class="tab w3-container w3-col m4 l4">
+      <p><label class="w3-text-green"><b>Title</b></label></p>
+      <p><input class="w3-input w3-border" type="text" id="Title" placeholder="Spaghetti Carbonara"></p>
+      <p><label class="w3-text-green"><b>Servings</b></label></p>
+      <p><input class="w3-input w3-border" type="number" id="Servings" placeholder="2"></p>
+      <p><label class="w3-text-green"><b>Ingredients</b></label></p>
+      <p><textarea class="w3-input w3-border" id="Ingredients" placeholder="1 lb spaghetti&#10;3.5 oz pancetta&#10;2 Tbsps olive oil&#10;1 egg&#10;0.5 cup parmesan cheese" rows="7"></textarea></p>
+      <p><label class="w3-text-green"><b>Instructions</b></label></p>
+      <p><textarea class="w3-input w3-border" id="Instructions" placeholder="Bring a large pot of water to a boil and season generously" rows="7"></textarea></p>
+      <p><button class="w3-btn w3-green" onclick="analyze1()">Submit</button></p>
+    </div>
+    <div id="tab2" class="tab w3-container w3-col m4 l4" style="display: none;">
+      <p><label class="w3-text-green"><b>ID</b></label></p>
+      <p><input class="w3-input w3-border" type="number" id="ID" placeholder="716429"></p>
+      <p><label class="w3-text-green"><b>IncludeNutrition</b></label></p>
+      <p><input class="w3-check" type="checkbox" id="IncludeNutrition"><label> Include nutrition data in the recipe information.</label></p>
+      <p><button class="w3-btn w3-green" onclick="analyze2()">Submit</button></p>
+    </div>
+    <div class="w3-container w3-col m8 l8">
+      <p><label class="w3-text-green"><b>Result</b></label>
+      <p><textarea class="w3-input w3-border" id="Result" placeholder="Result" rows="26" style="white-space: pre"></textarea></p>
+    </div>
+  </div>
+</body>
+</html>
